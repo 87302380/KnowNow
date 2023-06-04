@@ -1,0 +1,22 @@
+.demo-form-inline {
+    position: relative;
+    padding-left: 35px;
+}
+
+.input {
+    width: 93%;
+    border: 1px solid #CFD4DA;
+    margin-top: 10px;
+}
+
+.submit {
+    position: absolute;
+    top: 80px;
+    right: 35px;
+    background-color: #FFC107;
+    border: none;
+}
+
+.submit:hover, .submit:active {
+    background-color: rgba(255, 193, 7, .6);
+}

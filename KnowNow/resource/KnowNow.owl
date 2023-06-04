@@ -1,0 +1,1710 @@
+@prefix : <http://www.semanticweb.org/ontologies/KnowNow> .
+@prefix KN: <http://www.semanticweb.org/ontologies/KnowNow#> .
+@prefix isq: <http://emmo.info/emmo/middle/isq#> .
+@prefix ns1: <http://www.semanticweb.org/baca/ontologies/2021/10/KnowNow#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix annotations: <http://emmo.info/emmo/top/annotations#> .
+@base <http://www.semanticweb.org/ontologies/KnowNow> .
+
+<http://www.semanticweb.org/ontologies/KnowNow> rdf:type owl:Ontology ;
+                                                 rdfs:comment "EMMO Axoims (Classes and Object properties) were imported"@en ,
+                                                              "Ontology of project Know Now"@en ,
+                                                              "PMD Axioms (Classes and Object Properties) were imported"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://emmo.info/emmo/middle/isq#EMMO_de178b12_5d35_4bca_8efa_a4193162571d
+isq:EMMO_de178b12_5d35_4bca_8efa_a4193162571d rdf:type owl:AnnotationProperty .
+
+
+###  http://emmo.info/emmo/top/annotations#EMMO_1f1b164d_ec6a_4faa_8d5e_88bda62316cc
+annotations:EMMO_1f1b164d_ec6a_4faa_8d5e_88bda62316cc rdf:type owl:AnnotationProperty .
+
+
+###  http://emmo.info/emmo/top/annotations#EMMO_6dd685dd_1895_46e4_b227_be9f7d643c25
+annotations:EMMO_6dd685dd_1895_46e4_b227_be9f7d643c25 rdf:type owl:AnnotationProperty .
+
+
+###  http://emmo.info/emmo/top/annotations#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9
+annotations:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 rdf:type owl:AnnotationProperty .
+
+
+###  http://emmo.info/emmo/top/annotations#EMMO_fe015383_afb3_44a6_ae86_043628697aa2
+annotations:EMMO_fe015383_afb3_44a6_ae86_043628697aa2 rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_n
+KN:coil_n rdf:type owl:AnnotationProperty ;
+          rdfs:range xsd:string ;
+          rdfs:domain KN:Sintering .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#elucidation
+KN:elucidation rdf:type owl:AnnotationProperty ;
+               rdfs:subPropertyOf rdfs:comment .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/KnowNow#belongsTo
+KN:belongsTo rdf:type owl:ObjectProperty ;
+             rdfs:domain KN:Worksheet ;
+             rdfs:range KN:Laufkarte .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#compose
+KN:compose rdf:type owl:ObjectProperty ;
+           owl:inverseOf KN:composedBy ;
+           rdfs:range KN:Object ;
+           rdfs:comment "This property is used to describe which objects a voxel or a material contributes to compose."@en ;
+           rdfs:label "compose"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#composedBy
+KN:composedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain KN:Object ;
+              rdfs:comment "This property is used to describe which voxels and materials an object is composed of."@en ;
+              rdfs:label "composed by"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#describes
+KN:describes rdf:type owl:ObjectProperty ;
+             rdfs:range KN:Object .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#execute
+KN:execute rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain KN:ProcessNode ;
+           rdfs:range KN:Process ;
+           rdfs:comment "This property represents which process node executes a process"@en ;
+           rdfs:label "execute"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasDataResource
+KN:hasDataResource rdf:type owl:ObjectProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( KN:Model
+                                               KN:Object
+                                               KN:Process
+                                             )
+                               ] ;
+                   rdfs:range KN:DataResource ;
+                   rdfs:comment "This property is used to connect a Process to the Data Resource that describe the parameters and measurements produced during the process."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasHeaderField
+KN:hasHeaderField rdf:type owl:ObjectProperty ;
+                  rdfs:domain KN:DataResource ;
+                  rdfs:range KN:HeaderField ;
+                  rdfs:comment "A description for each header field included in the blob represented by the data resource"@en ;
+                  rdfs:label "has header field"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasInputObject
+KN:hasInputObject rdf:type owl:ObjectProperty ;
+                  rdfs:domain KN:Process ;
+                  rdfs:range KN:Object ;
+                  rdfs:comment "This property is used to link the processes to their input objects"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasMaterialProperty
+KN:hasMaterialProperty rdf:type owl:ObjectProperty ;
+                       owl:inverseOf KN:isMaterialPropertyOf ;
+                       rdfs:domain KN:Object ;
+                       rdfs:range KN:MaterialProperty ;
+                       rdfs:comment "Object hasMaterialProperty ?"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasModel
+KN:hasModel rdf:type owl:ObjectProperty ;
+            rdfs:domain KN:Object ;
+            rdfs:range KN:Model .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasNextProcess
+KN:hasNextProcess rdf:type owl:ObjectProperty ;
+                  rdfs:domain KN:Process ;
+                  rdfs:range KN:Process ;
+                  rdfs:comment "This property is used to indicate the process that was run after the current process."@en ;
+                  rdfs:label "has next process"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasObjectiveProperty
+KN:hasObjectiveProperty rdf:type owl:ObjectProperty ;
+                        rdfs:domain KN:Object ;
+                        rdfs:range KN:ObjectiveProperty .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasOutputObject
+KN:hasOutputObject rdf:type owl:ObjectProperty ;
+                   rdfs:domain KN:Process ;
+                   rdfs:range KN:Object ;
+                   rdfs:comment "This property is used to link the processes to their output objects"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasPhysicsOfModel
+KN:hasPhysicsOfModel rdf:type owl:ObjectProperty ;
+                     rdfs:domain KN:Model ;
+                     rdfs:range KN:PhysicsOfModel .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasPreviousProcess
+KN:hasPreviousProcess rdf:type owl:ObjectProperty ;
+                      rdfs:domain KN:Process ;
+                      rdfs:range KN:Process ;
+                      rdfs:comment "This property is used to indicate that which process was previously run."@en ;
+                      rdfs:label "has previous process"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasProcessNodeComponent
+KN:hasProcessNodeComponent rdf:type owl:ObjectProperty ;
+                           rdfs:domain KN:ProcessNode ;
+                           rdfs:range KN:ProcessNodeComponent ;
+                           rdfs:comment "An object property associating a process node with its (potentially modular) components, e.g. the chambers of a heat treatment furnace."@en ;
+                           rdfs:label "has process node component"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasQuantitativeParameter
+KN:hasQuantitativeParameter rdf:type owl:ObjectProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( KN:Object
+                                                        KN:Process
+                                                      )
+                                        ] ;
+                            rdfs:range [ rdf:type owl:Class ;
+                                         owl:unionOf ( KN:HeaderField
+                                                       KN:QuantityValue
+                                                     )
+                                       ] ;
+                            rdfs:comment "This property is used to relate values with units to process measurements and paramaeters."@en ;
+                            rdfs:label "has quantitative parameter"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasQuantityValue
+KN:hasQuantityValue rdf:type owl:ObjectProperty ;
+                    rdfs:domain KN:MaterialProperty ;
+                    rdfs:range KN:QuantityValue .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasSubordinateProcess
+KN:hasSubordinateProcess rdf:type owl:ObjectProperty ;
+                         rdfs:domain KN:Process ;
+                         rdfs:range KN:Process ;
+                         rdfs:comment "This property is used to link a process to its subordinate processes."@en ;
+                         rdfs:label "has subordinate process"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#isEstimatedBy
+KN:isEstimatedBy rdf:type owl:ObjectProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( KN:MaterialProperty
+                                             KN:ObjectiveProperty
+                                           )
+                             ] ;
+                 rdfs:range KN:Model .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#isMaterialPropertyOf
+KN:isMaterialPropertyOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#isMeasuredBy
+KN:isMeasuredBy rdf:type owl:ObjectProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( KN:MaterialProperty
+                                            KN:ObjectiveProperty
+                                          )
+                            ] ;
+                rdfs:range KN:Metronomie .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#quantityUnit
+KN:quantityUnit rdf:type owl:ObjectProperty ;
+                rdfs:domain KN:QuantityValue ;
+                rdfs:range KN:PmdSiUnit ;
+                rdfs:comment "Unit of measurement." ;
+                rdfs:label "quantityUnit" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/KnowNow#AirTemperature
+KN:AirTemperature rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf KN:FoilCastParameter ;
+                  rdfs:domain KN:FoilCast ;
+                  rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Batch
+KN:Batch rdf:type owl:DatatypeProperty ;
+         rdfs:domain KN:GreenTape ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#CastingRoomHumidity
+KN:CastingRoomHumidity rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf KN:FoilCastParameter ;
+                       rdfs:domain KN:FoilCast ;
+                       rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#CastingSpeed
+KN:CastingSpeed rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf KN:FoilCastParameter ;
+                rdfs:domain KN:FoilCast ;
+                rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Date
+KN:Date rdf:type owl:DatatypeProperty ;
+        rdfs:domain KN:Object ;
+        rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#FoilCastParameter
+KN:FoilCastParameter rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf KN:ProcessParameter ;
+                     rdfs:domain KN:FoilCast .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#HumidityCastingChannel
+KN:HumidityCastingChannel rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf KN:FoilCastParameter ;
+                          rdfs:domain KN:FoilCast ;
+                          rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#LaminatingParameter
+KN:LaminatingParameter rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf KN:ProcessParameter .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Material
+KN:Material rdf:type owl:DatatypeProperty ;
+            rdfs:domain KN:Object ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Paste
+KN:Paste rdf:type owl:DatatypeProperty ;
+         rdfs:domain KN:GreenTape .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ProcessParameter
+KN:ProcessParameter rdf:type owl:DatatypeProperty ;
+                    rdfs:domain KN:Process .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SinteringParameter
+KN:SinteringParameter rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf KN:ProcessParameter ;
+                      rdfs:domain KN:Sintering .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#active_body_dist
+KN:active_body_dist rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf KN:SinteringParameter ;
+                    rdfs:domain KN:Sintering ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#air_epsilon
+KN:air_epsilon rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf KN:SinteringParameter ;
+               rdfs:domain KN:Sintering ;
+               rdfs:range xsd:string ;
+               rdfs:comment "air permittivity"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#air_mur
+KN:air_mur rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf KN:SinteringParameter ;
+           rdfs:domain KN:Sintering ;
+           rdfs:range xsd:string ;
+           rdfs:comment "air permeability"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#air_sigma
+KN:air_sigma rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf KN:SinteringParameter ;
+             rdfs:domain KN:Sintering ;
+             rdfs:range xsd:string ;
+             rdfs:comment "air conductivity"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_d
+KN:coil_d rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf KN:SinteringParameter ;
+          rdfs:domain KN:Sintering ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_d_ges
+KN:coil_d_ges rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf KN:SinteringParameter ;
+              rdfs:domain KN:Sintering ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_h
+KN:coil_h rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf KN:SinteringParameter ;
+          rdfs:domain KN:Sintering ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Gesamthöhe"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_n
+KN:coil_n rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf KN:SinteringParameter .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_pitch
+KN:coil_pitch rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf KN:SinteringParameter ;
+              rdfs:domain KN:Sintering ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_wire_d
+KN:coil_wire_d rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf KN:SinteringParameter ;
+               rdfs:domain KN:Sintering ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#coil_wire_dist
+KN:coil_wire_dist rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf KN:SinteringParameter ;
+                  rdfs:domain KN:Sintering ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#dataResourceCharacteristic
+KN:dataResourceCharacteristic rdf:type owl:DatatypeProperty ;
+                              rdfs:domain KN:DataResource ;
+                              rdfs:range rdfs:Literal ;
+                              rdfs:label "has data resource characteristic"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#f_max
+KN:f_max rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf KN:SinteringParameter ;
+         rdfs:domain KN:Sintering ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#f_min
+KN:f_min rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf KN:SinteringParameter ;
+         rdfs:domain KN:Sintering ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Anfangsfrequenz"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ferro_epsilon
+KN:ferro_epsilon rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf KN:SinteringParameter ;
+                 rdfs:domain KN:Sintering ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "ferroelectric permittivity"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ferro_mur
+KN:ferro_mur rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf KN:SinteringParameter ;
+             rdfs:domain KN:Sintering ;
+             rdfs:range xsd:string ;
+             rdfs:comment "ferroelectric permeability"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ferro_sigma
+KN:ferro_sigma rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf KN:SinteringParameter ;
+               rdfs:domain KN:Sintering ;
+               rdfs:range xsd:string ;
+               rdfs:comment "ferroelectric conductivity"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#generatedObjectIdentifier
+KN:generatedObjectIdentifier rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf KN:objectCharacteristics ;
+                             rdfs:domain KN:Object ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "A machine-readable identifier associated with a discernable, tangible or simulated entity that is intended to be unique in a given scope. Examples for scope include: a database storing object data or a supply chain principal creating its own identifiers for the reports it generates"@en ;
+                             rdfs:label "generated object identifier"@en ,
+                                        "has generated object identifier"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasAcquisitionDate
+KN:hasAcquisitionDate rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                      rdfs:domain KN:ProcessNode ;
+                      rdfs:range xsd:positiveInteger ;
+                      rdfs:comment "The point in time a process node was commissioned (e.g. the purchase date, first day of use), represented in IEEE 1003 'Seconds since Epoch'."@en ;
+                      rdfs:label "has acquisition date"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasCollectionInterfaceHint
+KN:hasCollectionInterfaceHint rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                              rdfs:domain KN:ProcessNode ;
+                              rdfs:range xsd:string ;
+                              rdfs:comment "A label in support of identifying a network interface and/or address used by a process node to provide primary data stored in ontologies"@en ;
+                              rdfs:label "has collection interface hint"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasDataResourceLocation
+KN:hasDataResourceLocation rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf KN:dataResourceCharacteristic ;
+                           rdfs:domain KN:DataResource ;
+                           rdfs:range [ rdf:type rdfs:Datatype ;
+                                        owl:unionOf ( xsd:anyURI
+                                                      xsd:string
+                                                    )
+                                      ] ;
+                           rdfs:comment "This property indicates that a file can be retrieved or downloaded from a specific address."@en ;
+                           rdfs:label "has data resource location"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasDataResourceSerialization
+KN:hasDataResourceSerialization rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf KN:dataResourceCharacteristic ;
+                                rdfs:domain KN:DataResource ;
+                                rdfs:range xsd:string ;
+                                rdfs:comment ""@en ;
+                                rdfs:label "has data resource serialization"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasHeaderFieldDescription
+KN:hasHeaderFieldDescription rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf KN:headerFieldCharacteristic ;
+                             rdfs:domain KN:HeaderField ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "A data property representing an optional human-readable description of the header field's intent."@en ;
+                             rdfs:label "has header field description"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasHeaderFieldSequenceNumber
+KN:hasHeaderFieldSequenceNumber rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf KN:headerFieldCharacteristic ;
+                                rdfs:domain KN:HeaderField ;
+                                rdfs:range xsd:positiveInteger ;
+                                rdfs:comment "A mandatory numbering representing the index of the columns in sequence"@en ;
+                                rdfs:label "has header field sequence number"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasIdentifier
+KN:hasIdentifier rdf:type owl:DatatypeProperty ;
+                 rdfs:domain KN:DataResource ;
+                 rdfs:range [ rdf:type rdfs:Datatype ;
+                              owl:oneOf [ rdf:type rdf:List ;
+                                          rdf:first "KNT001" ;
+                                          rdf:rest [ rdf:type rdf:List ;
+                                                     rdf:first "KNT002" ;
+                                                     rdf:rest rdf:nil
+                                                   ]
+                                        ]
+                            ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasModel
+KN:hasModel rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasNumber
+KN:hasNumber rdf:type owl:DatatypeProperty ;
+             rdfs:domain KN:Worksheet ;
+             rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasParameter
+KN:hasParameter rdf:type owl:DatatypeProperty ;
+                rdfs:range rdfs:Literal .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasProcessNodeCharacteristic
+KN:hasProcessNodeCharacteristic rdf:type owl:DatatypeProperty ;
+                                rdfs:domain KN:ProcessNode ;
+                                rdfs:range rdfs:Literal ;
+                                rdfs:comment "The point in time a process node was commissioned (e.g. the purchase date, first day of use), represented in IEEE 1003 'Seconds since Epoch'."@en ;
+                                rdfs:label "has process node characteristic"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasProcessNodeIdentifier
+KN:hasProcessNodeIdentifier rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                            rdfs:comment "A string intended to uniquely identify a process node in a given scope, e.g. global scope: serial number, organization scope, asset management identifier."@en ;
+                            rdfs:label "has process node identifier"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasProcessNodeName
+KN:hasProcessNodeName rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                      rdfs:domain KN:ProcessNode ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "A human-generated identifier associated with a discernible, tangible or simulated entity intended to be unique in a given scope"@en ;
+                      rdfs:label "has process node name"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasProcessNodeType
+KN:hasProcessNodeType rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                      rdfs:domain KN:ProcessNode ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Process Node typename, e.g. \"ProTherm500\""@en ;
+                      rdfs:label "has process node type"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasProcessNodeVersion
+KN:hasProcessNodeVersion rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                         rdfs:domain KN:ProcessNode ;
+                         rdfs:range xsd:string ;
+                         rdfs:comment "Process Node Version Number, e.g. \"2.24\""@en ;
+                         rdfs:label "has process node version"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasStartingTime
+KN:hasStartingTime rdf:type owl:DatatypeProperty ;
+                   rdfs:domain KN:Process ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:label "has starting time"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasTolerance
+KN:hasTolerance rdf:type owl:DatatypeProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( KN:MaterialProperty
+                                            KN:ObjectiveProperty
+                                          )
+                            ] ;
+                rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasTypeDescription
+KN:hasTypeDescription rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf KN:hasProcessNodeCharacteristic ;
+                      rdfs:domain KN:ProcessNode ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Description for Process Node's utility, e.g. \"Rear Vacuum Furnace Oil Quenching\""@en ;
+                      rdfs:label "has type description"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasUcumCode
+KN:hasUcumCode rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain KN:PmdSiUnit ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "This property is used the enrich a unit with its common used label within the UCUM vocabulary"@en ;
+               rdfs:label "has ucum code"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasUnitLabel
+KN:hasUnitLabel rdf:type owl:DatatypeProperty ;
+                rdfs:domain KN:PmdSiUnit ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "This property is used the enrich a unit with its common used label."@en ;
+                rdfs:label "has unit label"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#hasValue
+KN:hasValue rdf:type owl:DatatypeProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( KN:MaterialProperty
+                                        KN:ObjectiveProperty
+                                      )
+                        ] ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:unionOf ( xsd:double
+                                       xsd:string
+                                     )
+                       ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#has_number_of_layers
+KN:has_number_of_layers rdf:type owl:DatatypeProperty ;
+                        rdfs:domain KN:WorkPiece ;
+                        rdfs:range xsd:integer ;
+                        rdfs:comment "Number of layers"@en ;
+                        rdfs:label "has number of layers"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#headerFieldCharacteristic
+KN:headerFieldCharacteristic rdf:type owl:DatatypeProperty ;
+                             rdfs:domain KN:HeaderField ;
+                             rdfs:range rdfs:Literal ;
+                             rdfs:label "has header field characteristic"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#me_epsilon
+KN:me_epsilon rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf KN:SinteringParameter ;
+              rdfs:domain KN:Sintering ;
+              rdfs:range xsd:string ;
+              rdfs:comment "metall permittivity"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#me_mur
+KN:me_mur rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf KN:SinteringParameter ;
+          rdfs:domain KN:Sintering ;
+          rdfs:range xsd:string ;
+          rdfs:comment "metall permeability"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#me_sigma
+KN:me_sigma rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf KN:SinteringParameter ;
+            rdfs:domain KN:Sintering ;
+            rdfs:range xsd:string ;
+            rdfs:comment "metall conductivity"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#objectCharacteristics
+KN:objectCharacteristics rdf:type owl:DatatypeProperty ;
+                         rdfs:label "has object characteristic"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#quantityAmount
+KN:quantityAmount rdf:type owl:DatatypeProperty ;
+                  rdfs:domain KN:QuantityValue ;
+                  rdfs:range xsd:decimal ;
+                  rdfs:comment "Amount of quantity."@en ;
+                  rdfs:label "quantityAmount"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#suppliedObjectIdentifier
+KN:suppliedObjectIdentifier rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf KN:objectCharacteristics ;
+                            rdfs:domain KN:Object ;
+                            rdfs:range xsd:string ;
+                            rdfs:comment "A human-generated identifier associated with a discernable, tangible or simulated entity"@en ;
+                            rdfs:label "supplied object identifier"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/KnowNow#BET-Analysis
+KN:BET-Analysis rdf:type owl:Class ;
+                rdfs:subClassOf KN:PowderMeasurement .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Compressibility
+KN:Compressibility rdf:type owl:Class ;
+                   rdfs:subClassOf KN:MaterialProperty ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty KN:describes ;
+                                     owl:someValuesFrom KN:GreenTape
+                                   ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ContinousThickness
+KN:ContinousThickness rdf:type owl:Class ;
+                      rdfs:subClassOf KN:Thickness ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty KN:describes ;
+                                        owl:someValuesFrom KN:GreenTape
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty KN:isMeasuredBy ;
+                                        owl:someValuesFrom KN:InLineMeasurement
+                                      ] ;
+                      rdfs:comment "Describes the thickness along the film."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ContinuumModel
+KN:ContinuumModel rdf:type owl:Class ;
+                  rdfs:subClassOf KN:PhysicsOfModel ;
+                  annotations:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "A physics-based model based on a physics equation describing the behaviour of continuum volume."@en ;
+                  skos:prefLabel "ContinuumModel"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#DataResource
+KN:DataResource rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty KN:hasHeaderField ;
+                                  owl:someValuesFrom KN:HeaderField
+                                ] ;
+                rdfs:comment "A data resource is file which contains parameters and measurements of a process."@en ,
+                             "PMD"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Designation
+KN:Designation rdf:type owl:Class ;
+               rdfs:subClassOf KN:MaterialProperty ;
+               rdfs:comment "Naming and chemical description of a mono-constituent substance."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#DesignationOfPowder
+KN:DesignationOfPowder rdf:type owl:Class ;
+                       rdfs:subClassOf KN:Designation ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty KN:describes ;
+                                         owl:someValuesFrom KN:Powder
+                                       ] ;
+                       rdfs:comment "Naming and chemical description of powder."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ElectricalCircuitModel
+KN:ElectricalCircuitModel rdf:type owl:Class ;
+                          rdfs:subClassOf KN:Model ;
+                          rdfs:comment "Describes the electrical circuits on each layer of the laminated stack."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Failure
+KN:Failure rdf:type owl:Class ;
+           rdfs:subClassOf KN:MaterialProperty ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty KN:describes ;
+                             owl:someValuesFrom KN:GreenTape
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty KN:isMeasuredBy ;
+                             owl:someValuesFrom KN:InLineMeasurement
+                           ] ;
+           rdfs:comment "Describes the number and position of failures on a workpiece or object."@en ,
+                        "Is a property?"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#FoilCast
+KN:FoilCast rdf:type owl:Class ;
+            rdfs:subClassOf KN:ShapingTechnology ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty KN:hasOutputObject ;
+                              owl:someValuesFrom KN:SimulationObject
+                            ] ;
+            rdfs:comment "Engineering process, where a slurry is mould in a foil."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#GeometricalDensityDetermination
+KN:GeometricalDensityDetermination rdf:type owl:Class ;
+                                   rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                                   rdfs:comment "Calculation of density based on measured or weighed values."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Geometry
+KN:Geometry rdf:type owl:Class ;
+            rdfs:subClassOf KN:ObjectiveProperty ;
+            rdfs:comment "Describes the geometry of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#GeometryModel
+KN:GeometryModel rdf:type owl:Class ;
+                 rdfs:subClassOf KN:Model ;
+                 rdfs:comment "Describes the visbile extirior shape of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#GreenTape
+KN:GreenTape rdf:type owl:Class ;
+             rdfs:subClassOf KN:Object ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasDataResource ;
+                               owl:someValuesFrom KN:DataResource
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:Compressibility
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:ContinousThickness
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:Failure
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:MeanMeasuredDensity
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:MeanThickness
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:SolidContent
+                             ] ;
+             rdfs:comment "Describes the foil as a commoditiy of the later component."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#HeaderField
+KN:HeaderField rdf:type owl:Class ;
+               rdfs:comment "A class bundling the semantics for a specific column in a table inside a (multidimensional) blob. Includes column number, pointer to concept, pointer to unit, and human readable description."@en ,
+                            "PMD"@en ;
+               rdfs:label "Header Field"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#InLineMeasurement
+KN:InLineMeasurement rdf:type owl:Class ;
+                     rdfs:subClassOf KN:NonTransformativeAnalysisProcess .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#IntermediateProcessing
+KN:IntermediateProcessing rdf:type owl:Class ;
+                          rdfs:subClassOf KN:ManufactureProcess ;
+                          rdfs:comment "Covers any preparation of the laminated stack."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Laminate
+KN:Laminate rdf:type owl:Class ;
+            rdfs:subClassOf KN:Object ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty KN:hasMaterialProperty ;
+                              owl:someValuesFrom KN:MeanDensity
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty KN:hasMaterialProperty ;
+                              owl:someValuesFrom KN:Thickness
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty KN:hasMaterialProperty ;
+                              owl:someValuesFrom KN:Wrapage
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty KN:hasObjectiveProperty ;
+                              owl:someValuesFrom KN:as_is_geometry
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty KN:hasObjectiveProperty ;
+                              owl:someValuesFrom KN:to_be_geometry
+                            ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#LaminateMeasurement
+KN:LaminateMeasurement rdf:type owl:Class ;
+                       rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                       rdfs:comment "Sammelt alle Messvorgänge, die am laminierten Folienstapel durchgeführt werden."@de .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#LaminatePhotograph
+KN:LaminatePhotograph rdf:type owl:Class ;
+                      rdfs:subClassOf KN:Photograph ;
+                      rdfs:comment "Photograph of the laminated stack."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Laminating
+KN:Laminating rdf:type owl:Class ;
+              rdfs:subClassOf KN:IntermediateProcessing ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty KN:hasInputObject ;
+                                owl:someValuesFrom KN:GreenTape
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty KN:hasOutputObject ;
+                                owl:someValuesFrom KN:Laminate
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty KN:hasOutputObject ;
+                                owl:someValuesFrom KN:SimulationObject
+                              ] ;
+              rdfs:comment "Describes the process of joining several, partially coated folis to one stack."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#LaserDiffraction
+KN:LaserDiffraction rdf:type owl:Class ;
+                    rdfs:subClassOf KN:PowderMeasurement ;
+                    rdfs:comment "Grinding of calcinated powder. Is used for the estimation of the particle size."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Laufkarte
+KN:Laufkarte rdf:type owl:Class ;
+             rdfs:subClassOf KN:DataResource .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ManufactureNode
+KN:ManufactureNode rdf:type owl:Class ;
+                   rdfs:subClassOf KN:ProcessNode ;
+                   rdfs:comment """A process node that implements transformative processes as well as consumes and creates tangible objects and typically requires inputs
+In general but not necessarily, a manufacture node includes intrinsic analysis nodes that create corresponding measurements with respect to the process implemented by the manufacture node."""@en ;
+                   rdfs:label "Manufacture Node"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ManufactureProcess
+KN:ManufactureProcess rdf:type owl:Class ;
+                      rdfs:subClassOf KN:Process ;
+                      rdfs:label "Manufacture process"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MaterialProperty
+KN:MaterialProperty rdf:type owl:Class ;
+                    rdfs:subClassOf KN:PhysicalCharacter ;
+                    rdfs:comment "Physical property of a material"@en ;
+                    rdfs:label "Material Property"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MeanDensity
+KN:MeanDensity rdf:type owl:Class ;
+               rdfs:subClassOf KN:density ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty KN:describes ;
+                                 owl:someValuesFrom KN:Laminate
+                               ] ;
+               rdfs:comment "Describes the measured, mean density of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MeanMeasuredDensity
+KN:MeanMeasuredDensity rdf:type owl:Class ;
+                       rdfs:subClassOf KN:MeanDensity ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty KN:describes ;
+                                         owl:someValuesFrom KN:GreenTape
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty KN:isMeasuredBy ;
+                                         owl:someValuesFrom KN:GeometricalDensityDetermination
+                                       ] ;
+                       rdfs:comment "Describes the measured, mean density of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MeanSimulatedDensity
+KN:MeanSimulatedDensity rdf:type owl:Class ;
+                        rdfs:subClassOf KN:MeanDensity ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty KN:isEstimatedBy ;
+                                          owl:someValuesFrom KN:PyLaminatingSimulationModel
+                                        ] ;
+                        rdfs:comment "Describes the simulated, mean density of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MeanThickness
+KN:MeanThickness rdf:type owl:Class ;
+                 rdfs:subClassOf KN:Thickness ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty KN:describes ;
+                                   owl:someValuesFrom KN:GreenTape
+                                 ] ;
+                 rdfs:comment "Describes the mean thickness of an object or workpiece."@en ,
+                              "Tape Thickness"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MeasuredThickness
+KN:MeasuredThickness rdf:type owl:Class ;
+                     rdfs:subClassOf KN:Thickness ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty KN:isMeasuredBy ;
+                                       owl:someValuesFrom KN:MicrometerCaliper
+                                     ] ;
+                     rdfs:comment "Describes the measured thickness of an object or work piece"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MesoscopicModel
+KN:MesoscopicModel rdf:type owl:Class ;
+                   rdfs:subClassOf KN:PhysicsOfModel ;
+                   annotations:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "A physics-based model based on a physics equation describing the behaviour of mesoscopic entities, i.e. a set of bounded atoms like a molecule, bead or nanoparticle."@en ;
+                   skos:prefLabel "MesoscopicModel"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Metronomie
+KN:Metronomie rdf:type owl:Class ;
+              rdfs:subClassOf KN:Process ;
+              rdfs:comment "Analisys process"@en ;
+              rdfs:label "Metronomie" .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MicrometerCaliper
+KN:MicrometerCaliper rdf:type owl:Class ;
+                     rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                     rdfs:comment "Caliper of the sintered micrometer."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Model
+KN:Model rdf:type owl:Class ;
+         rdfs:subClassOf KN:ProcessNode ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty KN:hasPhysicsOfModel ;
+                           owl:someValuesFrom KN:PhysicsOfModel
+                         ] ;
+         rdfs:comment "Simulation Node (Model)"@en ;
+         rdfs:label "Model" .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#NonTransformativeAnalysisProcess
+KN:NonTransformativeAnalysisProcess rdf:type owl:Class ;
+                                    rdfs:subClassOf KN:Metronomie ;
+                                    rdfs:comment "An analysis process that is also a non-transformative process"@en ;
+                                    rdfs:label "NonTransformativeAnalysisProcess"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Object
+KN:Object rdf:type owl:Class ;
+          rdfs:subClassOf KN:PhysicalCharacter ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty KN:hasMaterialProperty ;
+                            owl:someValuesFrom KN:MaterialProperty
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty KN:hasObjectiveProperty ;
+                            owl:someValuesFrom KN:ObjectiveProperty
+                          ] ;
+          rdfs:comment "A discernable, tangible or simulated entity that is processed in a process by a process node. An Object is composed of Voxels."@en ,
+                       "PMD"@en ;
+          rdfs:label "Object"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ObjectiveProperty
+KN:ObjectiveProperty rdf:type owl:Class ;
+                     rdfs:subClassOf KN:PhysicalCharacter ;
+                     annotations:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "A 'Property' that is determined by each 'Observer' following a well defined 'Observation' procedure through a specific perception channel."@en ;
+                     rdfs:comment "The word objective does not mean that each observation will provide the same results. It means that the observation followed a well defined procedure."@en ,
+                                  "This class refers to what is commonly known as physical property, i.e. a measurable property of physical system, whether is quantifiable or not."@en ;
+                     skos:prefLabel "ObjectiveProperty"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#OpticalProfilometrie
+KN:OpticalProfilometrie rdf:type owl:Class ;
+                        rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                        rdfs:comment "Profilometrie of the sintered opti cal."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ParticleProperty
+KN:ParticleProperty rdf:type owl:Class ;
+                    rdfs:subClassOf KN:MaterialProperty ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty KN:describes ;
+                                      owl:someValuesFrom KN:Powder
+                                    ] ;
+                    rdfs:label "Particle Property"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ParticleSizeDistributionD10
+KN:ParticleSizeDistributionD10 rdf:type owl:Class ;
+                               rdfs:subClassOf KN:ParticleProperty ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty KN:isMeasuredBy ;
+                                                 owl:someValuesFrom KN:LaserDiffraction
+                                               ] ;
+                               rdfs:comment "Smallest 10% particle size within distribution"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ParticleSizeDistributionD50
+KN:ParticleSizeDistributionD50 rdf:type owl:Class ;
+                               rdfs:subClassOf KN:ParticleProperty ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty KN:isMeasuredBy ;
+                                                 owl:someValuesFrom KN:LaserDiffraction
+                                               ] ;
+                               rdfs:comment "Mean particle size distribution"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ParticleSizeDistributionD90
+KN:ParticleSizeDistributionD90 rdf:type owl:Class ;
+                               rdfs:subClassOf KN:ParticleProperty ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty KN:isMeasuredBy ;
+                                                 owl:someValuesFrom KN:LaserDiffraction
+                                               ] ;
+                               rdfs:comment "Largest 10% particle size within distribution"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Photograph
+KN:Photograph rdf:type owl:Class ;
+              rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+              rdfs:comment "Photographs collecting the outer geometry of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PhysicalCharacter
+KN:PhysicalCharacter rdf:type owl:Class ;
+                     rdfs:label "Physical character"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PhysicsOfModel
+KN:PhysicsOfModel rdf:type owl:Class ;
+                  rdfs:label "Physics of Model"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PmdSiUnit
+KN:PmdSiUnit rdf:type owl:Class ;
+             rdfs:comment "Equivalent to the definition found at https://www.wikidata.org/wiki/Q61610698. Instances of this class represent a tuple of prefix and SI unit"@en ;
+             rdfs:label "PmdSiUnit"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PostProcessing
+KN:PostProcessing rdf:type owl:Class ;
+                  rdfs:subClassOf KN:ManufactureProcess ;
+                  rdfs:comment "Describes postprocessing after thermal processes."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Powder
+KN:Powder rdf:type owl:Class ;
+          rdfs:subClassOf KN:Object ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty KN:hasMaterialProperty ;
+                            owl:someValuesFrom KN:DesignationOfPowder
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty KN:hasMaterialProperty ;
+                            owl:someValuesFrom KN:ParticleProperty
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty KN:hasMaterialProperty ;
+                            owl:someValuesFrom KN:Shrinkage
+                          ] ;
+          rdfs:comment "Collectes and describes the powder material attributes"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PowderMeasurement
+KN:PowderMeasurement rdf:type owl:Class ;
+                     rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                     rdfs:comment "Can be deleted"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PowderProcessing
+KN:PowderProcessing rdf:type owl:Class ;
+                    rdfs:subClassOf KN:ManufactureProcess ;
+                    rdfs:comment "Describes how the ceramics powder is engineered."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Presure
+KN:Presure rdf:type owl:Class ;
+           rdfs:subClassOf KN:MaterialProperty ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty KN:describes ;
+                             owl:someValuesFrom KN:Laminate
+                           ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Process
+KN:Process rdf:type owl:Class ;
+           rdfs:comment """A series of actions or operations conducing to an end
+In PMD, a process is conducted via process nodes and has a discernable duration as part of a workflow. A process consumes objects and parameters. A process potentially generates new objects and measurements. A process is either a transformative process or a non-transformative process with respect to objects processed via a process node. There are primarily two types of distinguishable processes: manufacture process, analysis process. A process is a series of operations that are subordinate processes."""@en ;
+           rdfs:label "Process"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ProcessNode
+KN:ProcessNode rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty KN:execute ;
+                                 owl:someValuesFrom KN:Process
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty KN:hasProcessNodeComponent ;
+                                 owl:someValuesFrom KN:ProcessNodeComponent
+                               ] ;
+               rdfs:comment "A constituent that consumes and creates the objects in a process. The enabler of manufacture process steps, analysis process steps or simulation process steps. A process node realizes transformative processes and/or non-transformative processes."@en ;
+               rdfs:label "ProcessNode"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ProcessNodeComponent
+KN:ProcessNodeComponent rdf:type owl:Class ;
+                        rdfs:label "Process Node Component"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PyEvaluationModel
+KN:PyEvaluationModel rdf:type owl:Class ;
+                     rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                     rdfs:comment "Beinhaltet die mathamatische und visuelle Aufbereitung der Simulationsergebnisse."@de ;
+                     rdfs:label "Py evaluation model"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#PyLaminatingSimulationModel
+KN:PyLaminatingSimulationModel rdf:type owl:Class ;
+                               rdfs:subClassOf KN:Model ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty KN:execute ;
+                                                 owl:someValuesFrom KN:Laminating
+                                               ] ;
+                               rdfs:comment "Describes the physical relations of the laminating process in one python modell."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#QuantityValue
+KN:QuantityValue rdf:type owl:Class ;
+                 rdfs:subClassOf KN:Value ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty KN:quantityUnit ;
+                                   owl:someValuesFrom KN:PmdSiUnit
+                                 ] ;
+                 rdfs:comment "Wikibase extended value representing quantity." ;
+                 rdfs:label "QuantityValue" .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#RelativeDensity
+KN:RelativeDensity rdf:type owl:Class ;
+                   rdfs:subClassOf KN:density .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Rheometrie
+KN:Rheometrie rdf:type owl:Class ;
+              rdfs:subClassOf KN:SlurryMeasurement ;
+              rdfs:comment "Messverfahren zur Bestimmung der rheologischen Eigenschaften des Schlickers."@de .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ShapingTechnology
+KN:ShapingTechnology rdf:type owl:Class ;
+                     rdfs:subClassOf KN:ManufactureProcess ;
+                     rdfs:comment "Covers any process steps required to combine and shape raw material."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Shrinkage
+KN:Shrinkage rdf:type owl:Class ;
+             rdfs:subClassOf KN:MaterialProperty ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:describes ;
+                               owl:someValuesFrom KN:Powder
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:describes ;
+                               owl:someValuesFrom KN:WorkPiece
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasDataResource ;
+                               owl:someValuesFrom KN:DataResource
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:isMeasuredBy ;
+                               owl:someValuesFrom KN:Photograph
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:isMeasuredBy ;
+                               owl:someValuesFrom KN:ShrinkageMeasurement
+                             ] ;
+             rdfs:comment "Shrinkage is the reduction of the volume of a material, object or work piece effect after a process without any removal of material or pressure carried out."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ShrinkageMeasurement
+KN:ShrinkageMeasurement rdf:type owl:Class ;
+                        rdfs:subClassOf KN:TranformativeAnalysisProcess ;
+                        rdfs:comment "In-process procedure of pressing a tablet and measuring the % value of powder shrinkage."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SimulatedThickness
+KN:SimulatedThickness rdf:type owl:Class ;
+                      rdfs:subClassOf KN:Thickness ;
+                      rdfs:comment "Describes the simulated thickness of an object or work piece"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SimulationObject
+KN:SimulationObject rdf:type owl:Class ;
+                    rdfs:subClassOf KN:Object .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Sintering
+KN:Sintering rdf:type owl:Class ;
+             rdfs:subClassOf KN:ThermalProcesses ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasInputObject ;
+                               owl:someValuesFrom KN:Laminate
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasOutputObject ;
+                               owl:someValuesFrom KN:SimulationObject
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasOutputObject ;
+                               owl:someValuesFrom KN:WorkPiece
+                             ] ;
+             rdfs:comment "Firing process of a work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SinteringSimulationModel
+KN:SinteringSimulationModel rdf:type owl:Class ;
+                            rdfs:subClassOf KN:Model ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty KN:execute ;
+                                              owl:someValuesFrom KN:Sintering
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty KN:hasPhysicsOfModel ;
+                                              owl:someValuesFrom KN:ContinuumModel
+                                            ] ;
+                            rdfs:comment "Describes the physical relations of the sintering process in one FEM model."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SizeOfPrimaryParticles
+KN:SizeOfPrimaryParticles rdf:type owl:Class ;
+                          rdfs:subClassOf KN:ParticleProperty ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty KN:isMeasuredBy ;
+                                            owl:someValuesFrom KN:BET-Analysis
+                                          ] ;
+                          rdfs:comment "Medium diameter of individual particles."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Slurry
+KN:Slurry rdf:type owl:Class ;
+          rdfs:subClassOf KN:Object ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty KN:hasMaterialProperty ;
+                            owl:someValuesFrom KN:Viscosity
+                          ] ;
+          rdfs:comment "Descibes the material attributes of a homogenous mixture composed of ceramic powders and  filling."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SlurryMeasurement
+KN:SlurryMeasurement rdf:type owl:Class ;
+                     rdfs:subClassOf KN:NonTransformativeAnalysisProcess ;
+                     rdfs:label "Slurry measurements"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#SolidContent
+KN:SolidContent rdf:type owl:Class ;
+                rdfs:subClassOf KN:MaterialProperty ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty KN:describes ;
+                                  owl:someValuesFrom KN:GreenTape
+                                ] ;
+                rdfs:comment "Describes the amount of solid particles within fluid material mixture."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Temperatur
+KN:Temperatur rdf:type owl:Class ;
+              rdfs:subClassOf KN:MaterialProperty ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty KN:describes ;
+                                owl:someValuesFrom KN:Laminate
+                              ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ThermalProcesses
+KN:ThermalProcesses rdf:type owl:Class ;
+                    rdfs:subClassOf KN:ManufactureProcess ;
+                    rdfs:comment "Describes the thermal treatment approach for a workpiece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Thickness
+KN:Thickness rdf:type owl:Class ;
+             rdfs:subClassOf KN:MaterialProperty ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:describes ;
+                               owl:someValuesFrom KN:Laminate
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:isEstimatedBy ;
+                               owl:someValuesFrom KN:PyLaminatingSimulationModel
+                             ] .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#TranformativeAnalysisProcess
+KN:TranformativeAnalysisProcess rdf:type owl:Class ;
+                                rdfs:subClassOf KN:Metronomie ;
+                                rdfs:comment "An analysis process that is also a transformative process"@en ;
+                                rdfs:label "TranformativeAnalysisProcess"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Value
+KN:Value rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Viscosity
+KN:Viscosity rdf:type owl:Class ;
+             rdfs:subClassOf KN:MaterialProperty ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:describes ;
+                               owl:someValuesFrom KN:Slurry
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:isMeasuredBy ;
+                               owl:someValuesFrom KN:Rheometrie
+                             ] ;
+             rdfs:comment "Viscosity is defined as the measure of the resistance of a fluid to gradual deformation by shear or tensile stress."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#WorkPiece
+KN:WorkPiece rdf:type owl:Class ;
+             rdfs:subClassOf KN:Object ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasMaterialProperty ;
+                               owl:someValuesFrom KN:Shrinkage
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasModel ;
+                               owl:someValuesFrom KN:WorkPieceMultiPhysicsModel
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasObjectiveProperty ;
+                               owl:someValuesFrom KN:as_is_geometry
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty KN:hasObjectiveProperty ;
+                               owl:someValuesFrom KN:inner_geometry
+                             ] ;
+             rdfs:comment "Describes and contains any information related to the mulity-layer-ceramics."@en ,
+                          "Multi-Layer Ceramics"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#WorkPieceMultiPhysicsModel
+KN:WorkPieceMultiPhysicsModel rdf:type owl:Class ;
+                              rdfs:subClassOf KN:Model .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#WorkpiecePhotograph
+KN:WorkpiecePhotograph rdf:type owl:Class ;
+                       rdfs:subClassOf KN:Photograph ;
+                       rdfs:comment "Photograph of the sintered work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Worksheet
+KN:Worksheet rdf:type owl:Class ;
+             rdfs:subClassOf KN:DataResource .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Wrapage
+KN:Wrapage rdf:type owl:Class ;
+           rdfs:subClassOf KN:MaterialProperty ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty KN:describes ;
+                             owl:someValuesFrom KN:Laminate
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty KN:isEstimatedBy ;
+                             owl:someValuesFrom KN:PyLaminatingSimulationModel
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty KN:isMeasuredBy ;
+                             owl:someValuesFrom KN:OpticalProfilometrie
+                           ] ;
+           rdfs:comment "Describes the outer wrapage of a physical object or work piece."@en ,
+                        "Not specified in the xls file"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#as_is_geometry
+KN:as_is_geometry rdf:type owl:Class ;
+                  rdfs:subClassOf KN:Geometry ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:describes ;
+                                    owl:someValuesFrom KN:Laminate
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:describes ;
+                                    owl:someValuesFrom KN:WorkPiece
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:isMeasuredBy ;
+                                    owl:someValuesFrom KN:LaminatePhotograph
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:isMeasuredBy ;
+                                    owl:someValuesFrom KN:WorkpiecePhotograph
+                                  ] ;
+                  rdfs:comment "Describes the measured geometry of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#density
+KN:density rdf:type owl:Class ;
+           rdfs:subClassOf KN:MaterialProperty ;
+           rdfs:comment "Describes the density of an object or work piece."@en ;
+           rdfs:label "Density"@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#inner_geometry
+KN:inner_geometry rdf:type owl:Class ;
+                  rdfs:subClassOf KN:Geometry ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:describes ;
+                                    owl:someValuesFrom KN:WorkPiece
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:isEstimatedBy ;
+                                    owl:someValuesFrom KN:ElectricalCircuitModel
+                                  ] ;
+                  rdfs:comment "Describes inner and outer geometry of an object or work piece."@en .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#to_be_geometry
+KN:to_be_geometry rdf:type owl:Class ;
+                  rdfs:subClassOf KN:Geometry ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:describes ;
+                                    owl:someValuesFrom KN:Laminate
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty KN:isEstimatedBy ;
+                                    owl:someValuesFrom KN:GeometryModel
+                                  ] ;
+                  rdfs:comment "Describes the as designed geometry of an object or work piece."@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/ontologies/KnowNow#CurrentAC
+KN:CurrentAC rdf:type owl:NamedIndividual ,
+                      KN:DataResource ;
+             KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsCurrentAC.png"^^xsd:string ;
+             KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#CurrentDC
+KN:CurrentDC rdf:type owl:NamedIndividual ,
+                      KN:DataResource ;
+             KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsCurrentDC.png"^^xsd:string ;
+             KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#InductivitySpirale
+KN:InductivitySpirale rdf:type owl:NamedIndividual ,
+                               KN:WorkPieceMultiPhysicsModel ;
+                      KN:execute KN:Simulation_WorkPiece1 .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Laufkarte
+KN:Laufkarte rdf:type owl:NamedIndividual ,
+                      KN:Laufkarte .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MagneticFluxAC
+KN:MagneticFluxAC rdf:type owl:NamedIndividual ,
+                           KN:DataResource ;
+                  KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsMagneticFluxAC.png"^^xsd:string ;
+                  KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#MagneticFluxDC
+KN:MagneticFluxDC rdf:type owl:NamedIndividual ,
+                           KN:DataResource ;
+                  KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsMagneticFluxDC.png"^^xsd:string ;
+                  KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ProbePlotGroup8
+KN:ProbePlotGroup8 rdf:type owl:NamedIndividual ,
+                            KN:DataResource ;
+                   KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsProbePlotGroup8.png"^^xsd:string ;
+                   KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Simulation_WorkPiece1
+KN:Simulation_WorkPiece1 rdf:type owl:NamedIndividual ,
+                                  KN:ManufactureProcess ;
+                         KN:hasInputObject KN:WorkPiece1 ;
+                         KN:hasOutputObject KN:WorkPiece1_solved ;
+                         KN:active_body_dist "max(coil_pitch,coil_wire_d)"^^xsd:string ;
+                         KN:air_epsilon "1"^^xsd:string ;
+                         KN:air_mur "1"^^xsd:string ;
+                         KN:air_sigma "0 [S/m]"^^xsd:string ;
+                         KN:coil_d "1000[µm]"^^xsd:string ;
+                         KN:coil_d_ges "coil_d+coil_wire_d"^^xsd:string ;
+                         KN:coil_h "coil_n*coil_pitch+coil_wire_d"^^xsd:string ;
+                         KN:coil_pitch "coil_wire_d+coil_wire_dist"^^xsd:string ;
+                         KN:coil_wire_d "150[µm]"^^xsd:string ;
+                         KN:coil_wire_dist "100[µm]"^^xsd:string ;
+                         KN:f_max "1E6[Hz]"^^xsd:string ;
+                         KN:f_min "1E0[Hz]"^^xsd:string ;
+                         KN:ferro_epsilon "20"^^xsd:string ;
+                         KN:ferro_mur "500"^^xsd:string ;
+                         KN:ferro_sigma "0 [S/m]"^^xsd:string ;
+                         KN:me_epsilon "60"^^xsd:string ;
+                         KN:me_mur "1"^^xsd:string ;
+                         KN:me_sigma "61.6E6 [S/m]"^^xsd:string ;
+                         KN:coil_n "2"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Testsimulation_COMSOL_55
+KN:Testsimulation_COMSOL_55 rdf:type owl:NamedIndividual ,
+                                     KN:DataResource ;
+                            KN:hasDataResourceLocation "/home/knownow/Documents/JenaCOMSOLTest/COMSOL/TestSimulationCOMSOL55.mph"^^xsd:string ;
+                            KN:hasDataResourceSerialization "mph"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#Testsimulation_COMSOL_55_solved
+KN:Testsimulation_COMSOL_55_solved rdf:type owl:NamedIndividual ,
+                                            KN:DataResource ;
+                                   KN:hasDataResourceLocation "/home/knownow/Documents/JenaCOMSOLTest/COMSOL/TestSimulationCOMSOL55_solved.mph"^^xsd:string ;
+                                   KN:hasDataResourceSerialization "mph"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#WorkPiece1
+KN:WorkPiece1 rdf:type owl:NamedIndividual ,
+                       KN:WorkPiece ;
+              KN:hasDataResource KN:Testsimulation_COMSOL_55 ;
+              KN:hasModel KN:InductivitySpirale .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#WorkPiece1_solved
+KN:WorkPiece1_solved rdf:type owl:NamedIndividual ,
+                              KN:WorkPiece ;
+                     KN:hasDataResource KN:CurrentAC ,
+                                        KN:CurrentDC ,
+                                        KN:MagneticFluxAC ,
+                                        KN:MagneticFluxDC ,
+                                        KN:ProbePlotGroup8 ,
+                                        KN:Testsimulation_COMSOL_55_solved ,
+                                        <http://www.semanticweb.org/ontologies/KnowNow#ResultsAC-R&L> ,
+                                        <http://www.semanticweb.org/ontologies/KnowNow#ResultsACEm&Ee> .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ws1
+KN:ws1 rdf:type owl:NamedIndividual ,
+                KN:Worksheet ;
+       KN:belongsTo KN:Laufkarte ;
+       KN:hasNumber "1"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ws2
+KN:ws2 rdf:type owl:NamedIndividual ,
+                KN:Worksheet ;
+       KN:belongsTo KN:Laufkarte ;
+       KN:hasNumber "2"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ws3
+KN:ws3 rdf:type owl:NamedIndividual ,
+                KN:Worksheet ;
+       KN:belongsTo KN:Laufkarte ;
+       KN:hasNumber "3"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ws4
+KN:ws4 rdf:type owl:NamedIndividual ,
+                KN:Worksheet ;
+       KN:belongsTo KN:Laufkarte ;
+       KN:hasNumber "4"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ws5
+KN:ws5 rdf:type owl:NamedIndividual ,
+                KN:Worksheet ;
+       KN:belongsTo KN:Laufkarte ;
+       KN:hasNumber "5"^^xsd:int .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ResultsAC-R&L
+<http://www.semanticweb.org/ontologies/KnowNow#ResultsAC-R&L> rdf:type owl:NamedIndividual ,
+                                                                       KN:DataResource ;
+                                                              KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsResultsAC-R&L.png"^^xsd:string ;
+                                                              KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+###  http://www.semanticweb.org/ontologies/KnowNow#ResultsACEm&Ee
+<http://www.semanticweb.org/ontologies/KnowNow#ResultsACEm&Ee> rdf:type owl:NamedIndividual ,
+                                                                        KN:DataResource ;
+                                                               KN:hasDataResourceLocation "/home/knownow/KnowNow/TUB/WorkflowsResultsACEm&Ee.png"^^xsd:string ;
+                                                               KN:hasDataResourceSerialization "png"^^xsd:string .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+KN:Sintering_WorkPiece1 KN:coil_n "2"^^xsd:string .
+
+
+KN:coil_n rdfs:comment "" .
+
+
+KN:hasModel rdfs:comment "Process Node short description, e.g. \"Vacuum Furnace\""@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
