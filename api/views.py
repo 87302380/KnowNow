@@ -3,8 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from api.public import upload_file_to_server, query_sparql
 import json
-
-# Create your views here.
+import os
 
 def index(request):
 
@@ -12,10 +11,21 @@ def index(request):
 
 @csrf_exempt
 def upload(request):
-    if request.method == 'POST':
+    status = 'No file uploaded'
+
+    if request.method == 'POST' and request.FILES.get('file'):
         path = request.POST['path']
         file = request.FILES['file']
-        status = upload_file_to_server(path, file)
+
+        try:
+            save_directory = os.path.join("/home/knownow/KnowNow/", path)
+            file_path = os.path.join(save_directory, file.name)
+            with open(file_path, 'wb') as f:
+                for chunk in file.chunks():
+                    f.write(chunk)
+            status = "file uploaded success"
+        except:
+            status = "file uploaded faild"
 
     return HttpResponse(status)
 
