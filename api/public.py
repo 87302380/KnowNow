@@ -6,7 +6,6 @@ from rdflib.plugins.sparql import prepareQuery
 
 from pyiron_base import Project
 from .workflow.Workflow import ComsolSimulation
-import pandas as pd
 
 KnowNow_URL = "https://git.tu-berlin.de/felipebaca/know-now/-/raw/main/KnowNow_V8_ttl.owl"
 g = Graph() # create an empty graph
@@ -37,6 +36,6 @@ def get_objects():
     pr = Project(path="ComsolSim_Workflow")
     pr.remove_jobs(recursive=True, silently=True)
     job = pr.create_job(job_type=ComsolSimulation, job_name="ComsolSim")
-    options = job.get_objects().to_json(orient='records')
+    options = job.get_objects().to_dict(orient='records')
 
     return options

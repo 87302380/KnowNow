@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from api.public import upload_file_to_server, query_sparql, get_objects
 
-import json
-
 def index(request):
 
     return render(request, "index.html")
@@ -27,5 +25,5 @@ def sparqlQuery(request):
 
 @csrf_exempt
 def getObjects(request):
-    options = get_objects()
-    return JsonResponse(options)
+    options = get_objects
+    return JsonResponse(options, safe=False)

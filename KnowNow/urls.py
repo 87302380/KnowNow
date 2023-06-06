@@ -21,5 +21,5 @@ urlpatterns = [
     path('', views.index),
     path('sparqlquery/', views.sparqlQuery),
     path('upload/', views.upload),
-    path('getObjects/', views.getObjects),
+    path('getobjects/', views.getObjects),
 ]
