@@ -1,7 +1,10 @@
+import json
+
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from api.public import upload_file_to_server, query_sparql, get_objects
+from asgiref.sync import sync_to_async
 
 def index(request):
 
@@ -25,5 +28,6 @@ def sparqlQuery(request):
 
 @csrf_exempt
 def getObjects(request):
-    options = get_objects
+    options = sync_to_async(get_objects, thread_sensitive=True)
+
     return JsonResponse(options, safe=False)
