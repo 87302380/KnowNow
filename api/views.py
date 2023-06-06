@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from api.public import upload_file_to_server, query_sparql
+from api.public import upload_file_to_server, query_sparql, get_objects
+
 import json
 
 def index(request):
@@ -20,7 +21,11 @@ def upload(request):
 @csrf_exempt
 def sparqlQuery(request):
     query = json.loads(request.body.decode()).get('sparql')
-    print(query)
     result = query_sparql(query)
-    print(result)
     return HttpResponse(result)
+
+
+@csrf_exempt
+def getObjects(request):
+    options = get_objects()
+    return JsonResponse(options)

@@ -1,12 +1,10 @@
 from rdflib import Graph, Literal, URIRef, BNode, Namespace
 from rdflib.namespace import RDF, RDFS, SKOS, XSD, OWL
 from pyiron_base import PythonTemplateJob as PTJ
-from pyiron_base import Project
 import owlrl
 import pandas as pd
 import mph
 import os
-
 
 class ComsolSimulation(PTJ):
     def __init__(self, project, job_name):
@@ -22,7 +20,7 @@ class ComsolSimulation(PTJ):
         self.output.comsol_model_name = None
         self.output.object = None
         self.client = None
-        self.graphURL = "../KnowNow/resource/KnowNow.owl"
+        self.graphURL = "/home/knownow/KnowNow/TUB/Ontology/KnowNow_old.owl"
         self.g = Graph()
         self.g.parse(self.graphURL, format="ttl")  # self.g is the knowledge graph of the ontology before reasoner
         self.gr = Graph()
@@ -294,7 +292,7 @@ class ComsolSimulation(PTJ):
 
     def set_input_object(self, object_name):
         """
-        Defines the object: search the model, process and data resources connected to it and sets its location and parameters.
+        Defines the object search the model, process and data resources connected to it and sets its location and parameters.
         """
         query = """
         SELECT ?o
@@ -391,6 +389,14 @@ class ComsolSimulation(PTJ):
 
         exports = model.exports()
 
+        # Location to save the exports:
+        exp_loc = self.input.comsol_model.split("/")
+        exp_loc = exp_loc[1:-1]
+        location_exp = '/'
+        for element in exp_loc:
+            location_exp = location_exp + element + '/'
+
+        # Save the exports:
         for i in exports:
             i_p = i.replace(" ", "")
             model.export(i, i_p + ".png")
@@ -400,7 +406,7 @@ class ComsolSimulation(PTJ):
             self.g.add((URI_DR, RDF.type, DR))
             self.g.add((URI_DR, RDF.type, OWL.NamedIndividual))
             self.g.add((URI_DR, hasFormat, Literal("png", datatype=XSD.string)))
-            self.g.add((URI_DR, hasUri, Literal(os.getcwd() + i_p + ".png", datatype=XSD.string)))
+            self.g.add((URI_DR, hasUri, Literal(location_exp + i_p + ".png", datatype=XSD.string)))
 
             self.g.add((URIOutputObject, hasDataResource, URI_DR))
 
@@ -424,11 +430,3 @@ class ComsolSimulation(PTJ):
             print("Successful simulation")
             print("Output object saved as: ", self.output.comsol_model)
             self.status.finished = True
-
-pr = Project(path="ComsolSim_Workflow")
-# job = pr.load("ComsolSim")
-
-# pr.remove_jobs(recursive=True, silently=True)
-job = pr.create_job(job_type=ComsolSimulation, job_name="ComsolSim")
-
-print(job.input.comsol_model)
