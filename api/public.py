@@ -7,11 +7,10 @@ from rdflib.plugins.sparql import prepareQuery
 from pyiron_base import Project
 from .workflow.Workflow import ComsolSimulation
 
-KnowNow_URL = "https://git.tu-berlin.de/felipebaca/know-now/-/raw/main/KnowNow_V8_ttl.owl"
-g = Graph() # create an empty graph
-g.parse(KnowNow_URL, format = "ttl") # load the ontology
-
 def query_sparql(sparql: str) :
+    KnowNow_URL = "https://git.tu-berlin.de/felipebaca/know-now/-/raw/main/KnowNow_V8_ttl.owl"
+    g = Graph()  # create an empty graph
+    g.parse(KnowNow_URL, format="ttl")  # load the ontology
     results = g.query(prepareQuery(sparql))
     headers = [str(var) for var in results.vars]
     rows = [[str(val) for val in row] for row in results]
