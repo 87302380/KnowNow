@@ -25,8 +25,3 @@ def sparqlQuery(request):
     result = query_sparql(query)
     return HttpResponse(result)
 
-
-@csrf_exempt
-def getObjects(request):
-    options = sync_to_async(get_objects, thread_sensitive=True)
-    return JsonResponse(options, safe=False)

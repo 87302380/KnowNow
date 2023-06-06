@@ -1,5 +1,7 @@
 import json
 import os
+from django.http import JsonResponse
+from asgiref.sync import sync_to_async
 
 from rdflib import Graph
 from rdflib.plugins.sparql import prepareQuery
@@ -31,10 +33,15 @@ def upload_file_to_server(save_to, file):
 
     return status
 
+@sync_to_async
 def get_objects():
     pr = Project(path="ComsolSim_Workflow")
     pr.remove_jobs(recursive=True, silently=True)
     job = pr.create_job(job_type=ComsolSimulation, job_name="ComsolSim")
     options = job.get_objects().to_dict(orient='records')
-
+    job.close()
     return options
+
+async def getObjects(request):
+    options = await get_objects()
+    return JsonResponse(options, safe=False)
