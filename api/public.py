@@ -5,7 +5,7 @@ from rdflib import Graph
 from rdflib.plugins.sparql import prepareQuery
 
 from pyiron_base import Project
-from workflow.Simulation import ComsolSimulation
+from .workflow.Workflow import ComsolSimulation
 import pandas as pd
 
 KnowNow_URL = "https://git.tu-berlin.de/felipebaca/know-now/-/raw/main/KnowNow_V8_ttl.owl"
